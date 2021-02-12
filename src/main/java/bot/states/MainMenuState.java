@@ -17,6 +17,7 @@ import application.context.annotation.Message;
 import application.context.annotation.State;
 import application.routing.RouterManager;
 import application.session.SessionManager;
+import bot.Main;
 import bot.model.Alert;
 import bot.service.AlertService;
 import bot.util.CallbackUtils;
@@ -51,6 +52,9 @@ public class MainMenuState {
         buttons.add(createAlert);
         buttons.add(viewSubscriptions);
         buttons.add(joinAlert);
+        InlineButton blacklist = new InlineButton("Blacklist", "blacklist_action");
+        if(ApplicationContext.getCurrentUserId()==Main.ADMIN_ID)
+            buttons.add(blacklist);
         sender.setInlineButtons(buttons);
         sender.sendMessage();
     }
@@ -123,6 +127,25 @@ public class MainMenuState {
         editor.editMessage();
         
         router.routeCallbackToClass(userid, JoinAlertState.class);
+    }
+    
+    @Callback(command = "blacklist_action")
+    public void processBlacklistRequest(Update update) {
+        int messageId = CallbackUtils.getMessageIdFromCallback(update);
+        int userid = ApplicationContext.getCurrentUserId();
+
+        this.session.setProperty("mainMessageId", messageId);
+        
+        editor.setMessageId(messageId);
+        editor.setChatId(userid);
+        editor.setText("Input id");
+        List<InlineButton> buttons = new ArrayList<>();
+        InlineButton back = new InlineButton("Back", "back");
+        buttons.add(back);
+        editor.setInlineButtons(buttons);
+        editor.editMessage();
+        
+        router.routeCallbackToClass(userid, BlacklistState.class);
     }
     
    

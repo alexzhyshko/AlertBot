@@ -23,9 +23,6 @@ public class SchemaInitializer {
     private static String MYSQL_CONNECTION_URL;
 
     public SchemaInitializer() {
-        //DB_USER = PropertyReader.getProperty("db.user");
-        //DB_PASSWORD = PropertyReader.getProperty("db.password");
-        //MYSQL_CONNECTION_URL = PropertyReader.getProperty("mysql.connection.url");
         DB_USER = System.getenv("DB_USER");
         DB_PASSWORD = System.getenv("DB_PASSWORD");
         MYSQL_CONNECTION_URL = System.getenv("MYSQL_CONNECTION_URL");

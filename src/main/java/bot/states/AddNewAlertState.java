@@ -17,6 +17,7 @@ import application.context.annotation.Message;
 import application.context.annotation.State;
 import application.routing.RouterManager;
 import application.session.SessionManager;
+import bot.Main;
 import bot.service.AlertService;
 import bot.util.CallbackUtils;
 
@@ -151,6 +152,9 @@ public class AddNewAlertState {
         buttons.add(createAlert);
         buttons.add(viewSubscriptions);
         buttons.add(joinAlert);
+        InlineButton blacklist = new InlineButton("Blacklist", "blacklist_action");
+        if(ApplicationContext.getCurrentUserId()==Main.ADMIN_ID)
+            buttons.add(blacklist);
         sender.setInlineButtons(buttons);
         sender.sendMessage();
         
@@ -180,6 +184,9 @@ public class AddNewAlertState {
         buttons.add(createAlert);
         buttons.add(viewSubscriptions);
         buttons.add(joinAlert);
+        InlineButton blacklist = new InlineButton("Blacklist", "blacklist_action");
+        if(ApplicationContext.getCurrentUserId()==Main.ADMIN_ID)
+            buttons.add(blacklist);
         sender.setInlineButtons(buttons);
         sender.sendMessage();
         

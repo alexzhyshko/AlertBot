@@ -22,5 +22,15 @@ public class DefaultUserService implements UserService{
     public boolean userExists(int userid) {
        return userDao.userExists(userid);
     }
+
+    @Override
+    public boolean isBlacklisted(int userId) {
+        return userDao.isBlacklisted(userId);
+    }
+
+    @Override
+    public void setBlacklistedTrue(int userid) {
+        userDao.setBlacklistedTrue(userid);
+    }
     
 }

@@ -15,7 +15,7 @@ import bot.service.UserService;
 import bot.states.MainMenuState;
 
 @Component
-@Filter(order=0, enabled=true)
+@Filter(order=1, enabled=true)
 public class RegistrationFilter implements FilterAdapter{
 
     @Inject("defaultUserService")

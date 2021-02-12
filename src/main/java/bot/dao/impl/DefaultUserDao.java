@@ -16,6 +16,8 @@ public class DefaultUserDao implements UserDao{
 
     private static String SAVE_USER_QUERY = "INSERT INTO `Users`(id, username) VALUES(?,?);";
     private static String USER_EXISTS_QUERY = "SELECT EXISTS(SELECT username FROM `Users` WHERE id=?) as result";
+    private static String IS_USER_BLACKLISTED_QUERY = "SELECT EXISTS(SELECT id FROM Blacklist WHERE id=?)";
+    private static String ADD_TO_BLACKLIST_QUERY = "INSERT INTO Blacklist(id) VALUES(?)";
     
     @Override
     public void saveUser(User user) {
@@ -45,6 +47,35 @@ public class DefaultUserDao implements UserDao{
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public boolean isBlacklisted(int userId) {
+        try (Connection connection = ConnectionManager.createConnection();) {
+            try(PreparedStatement statement = connection.prepareStatement(IS_USER_BLACKLISTED_QUERY)){
+                statement.setInt(1, userId);
+                try(ResultSet rs = statement.executeQuery()){
+                    while(rs.next()) {
+                        return rs.getBoolean("result");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    @Override
+    public void setBlacklistedTrue(int userid) {
+        try (Connection connection = ConnectionManager.createConnection();) {
+            try(PreparedStatement statement = connection.prepareStatement(ADD_TO_BLACKLIST_QUERY)){
+                statement.setInt(1, userid);
+                statement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

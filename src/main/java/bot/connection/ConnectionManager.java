@@ -15,9 +15,6 @@ public class ConnectionManager {
 
 	
 	public ConnectionManager() {
-	    //DB_USER = PropertyReader.getProperty("db.user");
-	    //DB_PASSWORD = PropertyReader.getProperty("db.password");
-	    //DB_CONNECTION_URL = PropertyReader.getProperty("db.connection.url");
 	    DB_USER = System.getenv("DB_USER");
 	    DB_PASSWORD = System.getenv("DB_PASSWORD");
 	    DB_CONNECTION_URL = System.getenv("DB_CONNECTION_URL");

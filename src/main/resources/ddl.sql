@@ -23,3 +23,7 @@ alert_id INT,
 CONSTRAINT subscriptions_user_id_fk FOREIGN KEY (user_id) REFERENCES `Users`(id),
 CONSTRAINT subscriptions_alert_id_fk FOREIGN KEY (alert_id) REFERENCES Alerts(id)
 );
+
+create table Blacklist(
+id INT PRIMARY KEY
+);

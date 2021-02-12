@@ -16,6 +16,7 @@ import application.context.annotation.Inject;
 import application.context.annotation.State;
 import application.routing.RouterManager;
 import application.session.SessionManager;
+import bot.Main;
 import bot.model.Alert;
 import bot.model.User;
 import bot.service.AlertService;
@@ -93,6 +94,9 @@ public class ViewAlertState {
         buttons.add(createAlert);
         buttons.add(viewSubscriptions);
         buttons.add(joinAlert);
+        InlineButton blacklist = new InlineButton("Blacklist", "blacklist_action");
+        if(ApplicationContext.getCurrentUserId()==Main.ADMIN_ID)
+            buttons.add(blacklist);
         sender.setInlineButtons(buttons);
         sender.sendMessage();
         
@@ -109,7 +113,7 @@ public class ViewAlertState {
         List<User> users = alertService.getAllUsersByAlert(alertName);
         for(User user : users) {
             sender.setChatId(user.getUserId());
-            sender.setText("🔔🔔🔔🔔🔔\n\n"+alert.getName()+"\n\n"+alert.getMessage());
+            sender.setText("🔔🔔🔔🔔🔔\n\n"+alert.getName()+"\n\n"+alert.getMessage()+"\n\ntriggered by id "+userid);
             sender.sendMessage();
         }
         deleter.setMessageId(messageId);
@@ -124,6 +128,9 @@ public class ViewAlertState {
         buttons.add(createAlert);
         buttons.add(viewSubscriptions);
         buttons.add(joinAlert);
+        InlineButton blacklist = new InlineButton("Blacklist", "blacklist_action");
+        if(ApplicationContext.getCurrentUserId()==Main.ADMIN_ID)
+            buttons.add(blacklist);
         sender.setInlineButtons(buttons);
         sender.sendMessage();
         
@@ -151,6 +158,9 @@ public class ViewAlertState {
         buttons.add(createAlert);
         buttons.add(viewSubscriptions);
         buttons.add(joinAlert);
+        InlineButton blacklist = new InlineButton("Blacklist", "blacklist_action");
+        if(ApplicationContext.getCurrentUserId()==Main.ADMIN_ID)
+            buttons.add(blacklist);
         sender.setInlineButtons(buttons);
         sender.sendMessage();
         
@@ -175,6 +185,9 @@ public class ViewAlertState {
         buttons.add(createAlert);
         buttons.add(viewSubscriptions);
         buttons.add(joinAlert);
+        InlineButton blacklist = new InlineButton("Blacklist", "blacklist_action");
+        if(ApplicationContext.getCurrentUserId()==Main.ADMIN_ID)
+            buttons.add(blacklist);
         sender.setInlineButtons(buttons);
         sender.sendMessage();
         
