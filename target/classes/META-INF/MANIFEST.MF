@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Built-By: alexzhyshko
+Build-Jdk: 14.0.2
+Class-Path: lib/BotIO-1.6.4.jar lib/telegrambots-4.7.jar lib/telegrambot
+ s-meta-4.7.jar lib/guice-4.2.2.jar lib/javax.inject-1.jar lib/aopallian
+ ce-1.0.jar lib/guava-28.1-jre.jar lib/failureaccess-1.0.1.jar lib/liste
+ nablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar lib/jsr305-3.
+ 0.2.jar lib/checker-qual-2.8.1.jar lib/error_prone_annotations-2.3.2.ja
+ r lib/j2objc-annotations-1.3.jar lib/animal-sniffer-annotations-1.18.ja
+ r lib/jackson-annotations-2.10.1.jar lib/jackson-jaxrs-json-provider-2.
+ 10.1.jar lib/jackson-jaxrs-base-2.10.1.jar lib/jackson-module-jaxb-anno
+ tations-2.10.1.jar lib/jackson-core-2.10.1.jar lib/jakarta.xml.bind-api
+ -2.3.2.jar lib/jakarta.activation-api-1.2.1.jar lib/jackson-databind-2.
+ 10.1.jar lib/jersey-hk2-2.29.1.jar lib/jersey-common-2.29.1.jar lib/osg
+ i-resource-locator-1.0.3.jar lib/jakarta.activation-1.2.1.jar lib/hk2-l
+ ocator-2.6.1.jar lib/aopalliance-repackaged-2.6.1.jar lib/hk2-api-2.6.1
+ .jar lib/hk2-utils-2.6.1.jar lib/javassist-3.22.0-CR2.jar lib/jersey-me
+ dia-json-jackson-2.29.1.jar lib/jersey-entity-filtering-2.29.1.jar lib/
+ jersey-container-grizzly2-http-2.29.1.jar lib/jakarta.inject-2.6.1.jar 
+ lib/grizzly-http-server-2.4.4.jar lib/grizzly-http-2.4.4.jar lib/grizzl
+ y-framework-2.4.4.jar lib/jakarta.ws.rs-api-2.1.6.jar lib/jersey-server
+ -2.29.1.jar lib/jersey-client-2.29.1.jar lib/jersey-media-jaxb-2.29.1.j
+ ar lib/jakarta.annotation-api-1.3.5.jar lib/jakarta.validation-api-2.0.
+ 2.jar lib/json-20180813.jar lib/httpclient-4.5.10.jar lib/httpcore-4.4.
+ 12.jar lib/commons-logging-1.2.jar lib/commons-codec-1.11.jar lib/httpm
+ ime-4.5.10.jar lib/commons-io-2.6.jar lib/slf4j-api-1.7.29.jar lib/mysq
+ l-connector-java-8.0.23.jar lib/protobuf-java-3.11.4.jar lib/mybatis-3.
+ 4.5.jar
+Main-Class: bot.Main
+Created-By: Maven Integration for Eclipse
+
