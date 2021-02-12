@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 
 import org.apache.ibatis.jdbc.ScriptRunner;
 
+import com.mysql.cj.jdbc.exceptions.CommunicationsException;
+
 import application.context.annotation.Component;
 import application.context.reader.PropertyReader;
 
@@ -31,10 +33,13 @@ public class SchemaInitializer {
 
     public static void initialize() {
         try {
+            Thread.sleep(10000);
             Connection checkCon = createConnection(MYSQL_CONNECTION_URL+"alertbot");
             System.out.printf(
                     "[INFO] %s DB Schema already exists, no need to init%n",
                     LocalDateTime.now().toString());
+        } catch(CommunicationsException commExc) {
+            
         } catch(Exception exception) {
             System.out.printf(
                     "[INFO] %s DB Schema does not exist, initializing%n",

@@ -1,0 +1,33 @@
+version: '3'
+services:
+  app:
+    image: "app"
+    container_name: app
+    ports:
+    - "8085:8085"
+    depends_on:
+    - db
+    environment:
+    - DB_USER=root
+    - DB_PASSWORD=root
+    - DB_CONNECTION_URL=jdbc:mysql://localhost:4444/alertbot?serverTimezone=GMT%2B3&useAffectedRows=true&useUnicode=true&serverEncoding=utf8&autoReconnect=true
+    - MYSQL_CONNECTION_URL=jdbc:mysql://localhost:4444/
+    networks:
+      - database
+  db:
+    image: "mysql:latest"
+    container_name: db
+    ports:
+    - "4444:3306"
+    environment:
+    - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - database
+    healthcheck:
+      test: ["CMD-SHELL", 'mysqladmin ping']
+      interval: 10s
+      timeout: 2s
+      retries: 10
+
+networks:
+  database:
