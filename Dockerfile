@@ -1,10 +1,15 @@
+FROM mysql:8
+
 FROM alpine/git as downloadSourceCode
 WORKDIR /app
-RUN git clone https://github.com/mixaverros88/docker-with-java-and-mysql
+RUN git clone https://github.com/alexzhyshko/AlertBot.git
 
 FROM maven:3.5-jdk-8-alpine as packageSourceCode
 WORKDIR /app
-COPY --from=downloadSourceCode /app/docker-with-java-and-mysql/java /app
+COPY --from=downloadSourceCode /app/AlertBot /app
+
+RUN cat /app/pom.xml
+
 RUN mvn clean package
 
 FROM openjdk:8
