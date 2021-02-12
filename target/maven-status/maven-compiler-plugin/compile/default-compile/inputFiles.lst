@@ -1,5 +1,5 @@
-C:\Users\alexzhyshko\practice_workspace\AlertBot\src\main\java\bot\filter\RegistrationFilter.java
 C:\Users\alexzhyshko\practice_workspace\AlertBot\src\main\java\bot\dao\impl\DefaultSubscriptionDao.java
+C:\Users\alexzhyshko\practice_workspace\AlertBot\src\main\java\bot\filter\RestrictionFilter.java
 C:\Users\alexzhyshko\practice_workspace\AlertBot\src\main\java\bot\dao\UserDao.java
 C:\Users\alexzhyshko\practice_workspace\AlertBot\src\main\java\bot\service\UserService.java
 C:\Users\alexzhyshko\practice_workspace\AlertBot\src\main\java\bot\dao\impl\DefaultAlertDao.java
@@ -12,6 +12,7 @@ C:\Users\alexzhyshko\practice_workspace\AlertBot\src\main\java\bot\states\AddNew
 C:\Users\alexzhyshko\practice_workspace\AlertBot\src\main\java\bot\connection\ConnectionManager.java
 C:\Users\alexzhyshko\practice_workspace\AlertBot\src\main\java\bot\dao\impl\DefaultUserDao.java
 C:\Users\alexzhyshko\practice_workspace\AlertBot\src\main\java\bot\model\Alert.java
+C:\Users\alexzhyshko\practice_workspace\AlertBot\src\main\java\bot\filter\SigninFilter.java
 C:\Users\alexzhyshko\practice_workspace\AlertBot\src\main\java\bot\states\BlacklistState.java
 C:\Users\alexzhyshko\practice_workspace\AlertBot\src\main\java\bot\states\JoinAlertState.java
 C:\Users\alexzhyshko\practice_workspace\AlertBot\src\main\java\bot\service\AlertService.java
@@ -21,6 +22,5 @@ C:\Users\alexzhyshko\practice_workspace\AlertBot\src\main\java\bot\Main.java
 C:\Users\alexzhyshko\practice_workspace\AlertBot\src\main\java\bot\service\SubscriptionService.java
 C:\Users\alexzhyshko\practice_workspace\AlertBot\src\main\java\bot\service\impl\DefaultAlertService.java
 C:\Users\alexzhyshko\practice_workspace\AlertBot\src\main\java\bot\dao\SubscriptionDao.java
-C:\Users\alexzhyshko\practice_workspace\AlertBot\src\main\java\bot\filter\BlacklistFilter.java
 C:\Users\alexzhyshko\practice_workspace\AlertBot\src\main\java\bot\model\User.java
 C:\Users\alexzhyshko\practice_workspace\AlertBot\src\main\java\bot\schema_init\SchemaInitializer.java

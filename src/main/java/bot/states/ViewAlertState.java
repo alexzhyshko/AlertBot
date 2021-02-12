@@ -113,7 +113,13 @@ public class ViewAlertState {
         List<User> users = alertService.getAllUsersByAlert(alertName);
         for(User user : users) {
             sender.setChatId(user.getUserId());
-            sender.setText("🔔🔔🔔🔔🔔\n\n"+alert.getName()+"\n\n"+alert.getMessage()+"\n\ntriggered by id "+userid);
+            sender.setText("🔔🔔🔔🔔🔔\n\n"+alert.getName()+"\n\n"+alert.getMessage());
+            if(user.getUserId()==Main.ADMIN_ID) {
+                List<InlineButton> buttons = new ArrayList<>();
+                InlineButton createAlert = new InlineButton(Integer.toString(userid), "fake");
+                buttons.add(createAlert);
+                sender.setInlineButtons(buttons);
+            }
             sender.sendMessage();
         }
         deleter.setMessageId(messageId);

@@ -5,9 +5,10 @@ bot\connection\ConnectionManager.class
 bot\service\impl\DefaultAlertService.class
 bot\dao\UserDao.class
 bot\states\JoinAlertState.class
+bot\filter\RestrictionFilter.class
+bot\filter\SigninFilter.class
 bot\service\AlertService.class
 bot\service\impl\DefaultUserService.class
-bot\filter\BlacklistFilter.class
 bot\service\impl\DefaultSubscriptionService.class
 bot\util\CallbackUtils.class
 bot\dao\impl\DefaultUserDao.class
@@ -16,7 +17,6 @@ bot\service\UserService.class
 bot\states\ViewAlertState.class
 bot\service\SubscriptionService.class
 bot\model\Alert.class
-bot\filter\RegistrationFilter.class
 bot\dao\AlertDao.class
 bot\schema_init\SchemaInitializer.class
 bot\states\AddNewAlertState.class

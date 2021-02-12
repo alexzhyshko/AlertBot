@@ -16,7 +16,7 @@ public class DefaultUserDao implements UserDao{
 
     private static String SAVE_USER_QUERY = "INSERT INTO `Users`(id, username) VALUES(?,?);";
     private static String USER_EXISTS_QUERY = "SELECT EXISTS(SELECT username FROM `Users` WHERE id=?) as result";
-    private static String IS_USER_BLACKLISTED_QUERY = "SELECT EXISTS(SELECT id FROM Blacklist WHERE id=?)";
+    private static String IS_USER_BLACKLISTED_QUERY = "SELECT EXISTS(SELECT id FROM Blacklist WHERE id=?) as result";
     private static String ADD_TO_BLACKLIST_QUERY = "INSERT INTO Blacklist(id) VALUES(?)";
     
     @Override
