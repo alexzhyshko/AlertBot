@@ -14,7 +14,6 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 
 import application.context.annotation.Component;
-import application.context.reader.PropertyReader;
 
 @Component
 public class SchemaInitializer {
@@ -22,6 +21,8 @@ public class SchemaInitializer {
     private static String DB_PASSWORD;
     private static String MYSQL_CONNECTION_URL;
 
+    private static final int DB_STARTUP_WAIT_TIME_MS = 30000;
+    
     public SchemaInitializer() {
         DB_USER = System.getenv("DB_USER");
         DB_PASSWORD = System.getenv("DB_PASSWORD");
@@ -30,7 +31,18 @@ public class SchemaInitializer {
 
     public static void initialize() {
         try {
-            Thread.sleep(10000);
+            Connection checkCon = createConnection(MYSQL_CONNECTION_URL);
+        } catch(CommunicationsException commExc) {
+            System.out.printf(
+                    "[INFO] %s DB not alive, waiting %d seconds for DB to start%n", LocalDateTime.now().toString(), DB_STARTUP_WAIT_TIME_MS);
+            try {
+                Thread.sleep(DB_STARTUP_WAIT_TIME_MS);
+            }catch(Exception e) {
+                
+            }
+        } catch (SQLException e) {
+        }
+        try {
             Connection checkCon = createConnection(MYSQL_CONNECTION_URL+"alertbot");
             System.out.printf(
                     "[INFO] %s DB Schema already exists, no need to init%n",
