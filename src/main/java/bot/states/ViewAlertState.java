@@ -62,7 +62,7 @@ public class ViewAlertState {
         
         editor.setMessageId(messageId);
         editor.setChatId(userid);
-        editor.setText("Name: "+alertName);
+        editor.setText("Name: "+alertName+"\nMessage: "+alert.getMessage()+"\n\nOwner: "+alert.getOwner().getUsername()+"("+alert.getOwner().getUserId()+")");
         List<InlineButton> buttons = new ArrayList<>();
         InlineButton delete = new InlineButton("Delete", "alert_delete");
         InlineButton send = new InlineButton("SEND", "alert_send");

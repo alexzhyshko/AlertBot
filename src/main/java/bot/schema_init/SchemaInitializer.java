@@ -31,7 +31,7 @@ public class SchemaInitializer {
 
     public static void initialize() {
         try {
-            System.out.printf("[INFO] %s Waiting %d seconds for DB to start%n",
+            System.out.printf("[INFO] %s Waiting %dms. for DB to start%n",
                     LocalDateTime.now().toString(), DB_STARTUP_WAIT_TIME_MS);
             Thread.sleep(DB_STARTUP_WAIT_TIME_MS);
             Connection checkCon = createConnection(MYSQL_CONNECTION_URL + "alertbot");

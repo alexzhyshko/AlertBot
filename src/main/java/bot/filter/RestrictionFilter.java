@@ -25,7 +25,7 @@ public class RestrictionFilter implements FilterAdapter{
     public Update filter(Update update) throws FilterException {
         int userid = ApplicationContext.getCurrentUserId();
         if(userService.isBlacklisted(userid)) {
-            sender.setText("Ты в бане. Если думаешь, что это ошибка, то подумай еще раз получше");
+            sender.setText("Ты в бане.");
             sender.setChatId(userid);
             sender.sendMessage();
             throw new FilterException("User is blacklisted");

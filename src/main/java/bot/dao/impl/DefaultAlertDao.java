@@ -143,7 +143,7 @@ public class DefaultAlertDao implements AlertDao{
                 statement.setString(1, name);
                 try(ResultSet rs = statement.executeQuery()){
                     while(rs.next()) {
-                        User owner = User.builder().userId(rs.getInt("owner_id")).username("owner_username").build();
+                        User owner = User.builder().userId(rs.getInt("owner_id")).username(rs.getString("owner_username")).build();
                         return Alert.builder().name(rs.getString("alert_name")).message(rs.getString("alert_message")).owner(owner).build();
                     }
                 }
