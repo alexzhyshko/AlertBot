@@ -55,6 +55,8 @@ public class ViewAlertState {
         
         String command = update.getCallbackQuery().getData();
         String alertName = command.substring(18);
+        Alert alert = alertService.getAlertByName(alertName);
+        int ownerid = alert.getOwner().getUserId();
         
         this.session.setProperty("current_chosen_alert_name", alertName);
         
@@ -66,9 +68,11 @@ public class ViewAlertState {
         InlineButton send = new InlineButton("SEND", "alert_send");
         InlineButton leave = new InlineButton("Leave", "alert_leave");
         InlineButton back = new InlineButton("Menu", "back");
-        buttons.add(delete);
+        if(userid==ownerid)
+            buttons.add(delete);
         buttons.add(send);
-        buttons.add(leave);
+        if(userid!=ownerid)
+            buttons.add(leave);
         buttons.add(back);
         editor.setInlineButtons(buttons);
         editor.editMessage();
@@ -80,6 +84,7 @@ public class ViewAlertState {
         int messageId = this.session.getProperty("mainMessageId", Integer.class);
         String alertName = this.session.getProperty("current_chosen_alert_name", String.class);
         this.session.setProperty("current_chosen_alert_name", null);
+        
         alertService.deleteAlert(alertName);
         
         deleter.setMessageId(messageId);
@@ -114,7 +119,7 @@ public class ViewAlertState {
         for(User user : users) {
             sender.setChatId(user.getUserId());
             sender.setText("🔔🔔🔔🔔🔔\n\n"+alert.getName()+"\n\n"+alert.getMessage());
-            if(user.getUserId()==Main.ADMIN_ID) {
+            if(user.getUserId()==Main.ADMIN_ID || user.getUserId() == alert.getOwner().getUserId()) {
                 List<InlineButton> buttons = new ArrayList<>();
                 InlineButton createAlert = new InlineButton(Integer.toString(userid), "fake");
                 buttons.add(createAlert);

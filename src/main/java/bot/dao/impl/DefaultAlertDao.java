@@ -25,7 +25,7 @@ public class DefaultAlertDao implements AlertDao{
     private static String REMOVE_ALERT_QUERY = "DELETE FROM Alerts WHERE name=?;";
     private static String UPDATE_ALERT_NAME_QUERY = "UPDATE Alerts SET name=? WHERE name=?";
     private static String UPDATE_ALERT_MESSAGE_QUERY = "UPDATE Alerts SET message=? WHERE name=?";
-    private static String GET_ALERT_BY_NAME_QUERY = "SELECT name, message FROM Alerts WHERE name=?";
+    private static String GET_ALERT_BY_NAME_QUERY = "SELECT a.name as alert_name, a.message as alert_message, u.id as _owner_id, u.username as owner_username FROM Alerts a JOIN `Users` u ON a.owner_id = u.id WHERE a.name=?";
     
     @Inject("defaultSubscriptionDao")
     private SubscriptionDao subscriptionDao;
@@ -143,7 +143,8 @@ public class DefaultAlertDao implements AlertDao{
                 statement.setString(1, name);
                 try(ResultSet rs = statement.executeQuery()){
                     while(rs.next()) {
-                        return Alert.builder().name(rs.getString("name")).message(rs.getString("message")).build();
+                        User owner = User.builder().userId(rs.getInt("owner_id")).username("owner_username").build();
+                        return Alert.builder().name(rs.getString("alert_name")).message(rs.getString("alert_message")).owner(owner).build();
                     }
                 }
             }
