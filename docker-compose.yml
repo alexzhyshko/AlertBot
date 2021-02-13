@@ -15,3 +15,7 @@ services:
     container_name: db
     environment:
     - MYSQL_ROOT_PASSWORD=root
+    volumes:
+    - my-datavolume:/var/lib/mysql
+volumes:
+  my-datavolume:
