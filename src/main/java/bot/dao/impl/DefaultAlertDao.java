@@ -25,7 +25,7 @@ public class DefaultAlertDao implements AlertDao{
     private static String REMOVE_ALERT_QUERY = "DELETE FROM Alerts WHERE name=?;";
     private static String UPDATE_ALERT_NAME_QUERY = "UPDATE Alerts SET name=? WHERE name=?";
     private static String UPDATE_ALERT_MESSAGE_QUERY = "UPDATE Alerts SET message=? WHERE name=?";
-    private static String GET_ALERT_BY_NAME_QUERY = "SELECT a.name as alert_name, a.message as alert_message, u.id as _owner_id, u.username as owner_username FROM Alerts a JOIN `Users` u ON a.owner_id = u.id WHERE a.name=?";
+    private static String GET_ALERT_BY_NAME_QUERY = "SELECT a.name as alert_name, a.message as alert_message, u.id as owner_id, u.username as owner_username FROM Alerts a JOIN `Users` u ON a.owner_id = u.id WHERE a.name=?";
     
     @Inject("defaultSubscriptionDao")
     private SubscriptionDao subscriptionDao;
