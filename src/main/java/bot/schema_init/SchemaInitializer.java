@@ -21,8 +21,8 @@ public class SchemaInitializer {
     private static String DB_PASSWORD;
     private static String MYSQL_CONNECTION_URL;
 
-    private static final int DB_STARTUP_WAIT_TIME_MS = 30000;
-    
+    private static final int DB_STARTUP_WAIT_TIME_MS = 15000;
+
     public SchemaInitializer() {
         DB_USER = System.getenv("DB_USER");
         DB_PASSWORD = System.getenv("DB_PASSWORD");
@@ -31,31 +31,19 @@ public class SchemaInitializer {
 
     public static void initialize() {
         try {
-            Connection checkCon = createConnection(MYSQL_CONNECTION_URL);
-        } catch(CommunicationsException commExc) {
-            System.out.printf(
-                    "[INFO] %s DB not alive, waiting %d seconds for DB to start%n", LocalDateTime.now().toString(), DB_STARTUP_WAIT_TIME_MS);
-            try {
-                Thread.sleep(DB_STARTUP_WAIT_TIME_MS);
-            }catch(Exception e) {
-                
-            }
-        } catch (SQLException e) {
-        }
-        try {
-            Connection checkCon = createConnection(MYSQL_CONNECTION_URL+"alertbot");
-            System.out.printf(
-                    "[INFO] %s DB Schema already exists, no need to init%n",
-                    LocalDateTime.now().toString());
-        } catch(CommunicationsException commExc) {
-            
-        } catch(Exception exception) {
-            System.out.printf(
-                    "[INFO] %s DB Schema does not exist, initializing%n",
-                    LocalDateTime.now().toString());
+            System.out.printf("[INFO] %s Waiting %d seconds for DB to start%n",
+                    LocalDateTime.now().toString(), DB_STARTUP_WAIT_TIME_MS);
+            Thread.sleep(DB_STARTUP_WAIT_TIME_MS);
+            Connection checkCon = createConnection(MYSQL_CONNECTION_URL + "alertbot");
+            System.out.printf("[INFO] %s DB Schema already exists, no need to init%n", LocalDateTime.now().toString());
+        } catch (CommunicationsException commExc) {
+
+        } catch (Exception exception) {
+            System.out.printf("[INFO] %s DB Schema does not exist, initializing%n", LocalDateTime.now().toString());
             try (Connection con = createConnection()) {
                 ScriptRunner sr = new ScriptRunner(con);
-                try(Reader reader = new BufferedReader(new InputStreamReader(SchemaInitializer.class.getClassLoader().getResourceAsStream("ddl.sql"), "UTF-8"))){
+                try (Reader reader = new BufferedReader(new InputStreamReader(
+                        SchemaInitializer.class.getClassLoader().getResourceAsStream("ddl.sql"), "UTF-8"))) {
                     sr.runScript(reader);
                 }
             } catch (IOException e) {
@@ -74,7 +62,7 @@ public class SchemaInitializer {
             throw new RuntimeException(e.getMessage());
         }
     }
-    
+
     private static Connection createConnection(String conUrl) throws SQLException {
         return DriverManager.getConnection(conUrl, DB_USER, DB_PASSWORD);
     }
