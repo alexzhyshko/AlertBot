@@ -58,7 +58,7 @@ public class DefaultAlertDao implements AlertDao{
     }
 
     @Override
-    public void saveAlert(String name, String message, int ownerId) {
+    public boolean saveAlert(String name, String message, int ownerId) {
         try (Connection connection = ConnectionManager.createConnection();) {
             try(PreparedStatement statement = connection.prepareStatement(SAVE_ALERT_QUERY)){
                 statement.setString(1, name);
@@ -70,7 +70,9 @@ public class DefaultAlertDao implements AlertDao{
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     @Override

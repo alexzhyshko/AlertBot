@@ -9,7 +9,7 @@ public interface AlertService {
 
     List<Alert> getAllUserAlerts(int userid);
     
-    void createAlert(String name, String message, int ownerId);
+    boolean createAlert(String name, String message, int ownerId);
     
     void updateAlertName(String oldname, String newname);
     

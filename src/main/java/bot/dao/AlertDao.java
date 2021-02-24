@@ -9,7 +9,7 @@ public interface AlertDao {
     
     List<Alert> getAlertsByUserId(int userid);
     
-    void saveAlert(String name, String message, int ownerId);
+    boolean saveAlert(String name, String message, int ownerId);
 
     void removeAlert(String name);
     

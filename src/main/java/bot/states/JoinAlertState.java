@@ -55,7 +55,7 @@ public class JoinAlertState {
         String alertName = update.getMessage().getText();
         Alert alert = alertService.getAlertByName(alertName);
         List<Alert> thisUsersAlerts = alertService.getAllUserAlerts(userid);
-        if (thisUsersAlerts.stream().filter(alertVar -> alertVar.getName().equals(alertName)).count() > 0) {
+        if (thisUsersAlerts.stream().filter(alertVar -> alertVar.getName().equalsIgnoreCase(alertName)).count() > 0) {
             sender.setText("Already part of this alert");
             sender.setChatId(userid);
             sender.sendMessage();

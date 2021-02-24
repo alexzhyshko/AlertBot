@@ -21,8 +21,8 @@ public class DefaultAlertService implements AlertService{
     }
 
     @Override
-    public void createAlert(String name, String message, int ownerId) {
-        alertDao.saveAlert(name, message, ownerId);
+    public boolean createAlert(String name, String message, int ownerId) {
+        return alertDao.saveAlert(name, message, ownerId);
     }
 
     @Override

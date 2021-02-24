@@ -137,14 +137,13 @@ public class AddNewAlertState {
         String alertName = this.session.getProperty("new_alert_name", String.class); 
         String alertMessage = this.session.getProperty("new_alert_message", String.class);
 
-        alertService.createAlert(alertName, alertMessage, userid);
-        
+        boolean isCreated = alertService.createAlert(alertName, alertMessage, userid);
         
         deleter.setMessageId(messageId);
         deleter.setChatId(userid);
         deleter.deleteMessage();
         sender.setChatId(ApplicationContext.getCurrentUserId());
-        sender.setText("Menu");
+        sender.setText(isCreated?"Menu":"This alert already exists\n\nMenu");
         List<InlineButton> buttons = new ArrayList<>();
         InlineButton createAlert = new InlineButton("Create Alert", "new_alert_action");
         InlineButton viewSubscriptions = new InlineButton("View Alerts", "view_alerts_action");
